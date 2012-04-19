@@ -12,7 +12,7 @@ pro = uglify.uglify
 
 # Export closure to build middleware.
 module.exports = (opts, coffee) ->
-  live = !!process.env.PRODUCTION
+  live = process.env.NODE_ENV is 'production'
   if typeof opts.uglify is 'undefined' then opts.uglify = live
   if typeof opts.live is 'undefined' then opts.live = !live
 
