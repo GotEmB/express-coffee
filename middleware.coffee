@@ -27,7 +27,7 @@ module.exports = (opts, coffee) ->
       @log 'compiler invoked'
 
       # Determine coffeescript path.
-      @cpath = @jpath.replace('/js', '/js').replace(/\.js$/, '.coffee')
+      @cpath = @jpath.replace(/\.js$/, '.coffee')
     
     time: (time) -> (new Date time.mtime).getTime()
     
@@ -96,7 +96,7 @@ module.exports = (opts, coffee) ->
   # Return the middleware
   (req, res, next) ->
     # Ignore URLs that don't start in /javascripts and end in .js.
-    if not (/^\/js/.test(req.url) and /\.js$/.test(req.url)) then return next()
+    if not (/\.js$/.test(req.url)) then return next()
 
     # Run the compiler.
     compiler = new Compiler opts.path + req.url
